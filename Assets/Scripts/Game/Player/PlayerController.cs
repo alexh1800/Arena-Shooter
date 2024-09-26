@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public Camera mainCamera;  // Reference to the main camera
+
     [SerializeField]
     float speed = 1f;
 
     [SerializeField]
     float maxDistance = 10;
+
+    [SerializeField]
+    float rotationSpeed = 5f;  // Speed at which the player rotates
 
     //Rigidbody rb;
 
@@ -19,19 +25,24 @@ public class PlayerController : MonoBehaviour
         //rb = GetComponent<Rigidbody>();
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
+        //move player based on player input
         movePlayer();
+        mouseRotation();
     }
 
 
+    //move player based on player input
     void movePlayer()
     {
 
         // Get the input from the arrow keys (or WASD keys)
         float moveHorizontal = Input.GetAxis("Horizontal");
-        float  moveVertical = Input.GetAxis("Vertical");
+        float moveVertical = Input.GetAxis("Vertical");
 
 
         // Create a Vector3 representing the direction to move in
@@ -47,7 +58,7 @@ public class PlayerController : MonoBehaviour
     void preventOutOfBounds()
     {
 
-        //if somehow the player glitches through the platform or floats into the sky or something, reset their y postion
+        //if somehow the player glitches through the platform or floats into the air, reset their y postion
         if (transform.position.y != 1)
         {
             transform.position = new Vector3(transform.position.x, 1, transform.position.y);
@@ -80,4 +91,38 @@ public class PlayerController : MonoBehaviour
 
         
     }
+
+
+    void mouseRotation()
+    {
+        // Get the mouse position in the world
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);  // Define a plane at y = 0 (ground)
+
+        // Raycast from the camera to the ground plane
+        if (groundPlane.Raycast(ray, out float distanceToGround))
+        {
+            // Find the point on the ground where the ray intersects
+            Vector3 mouseWorldPosition = ray.GetPoint(distanceToGround);
+
+            // Calculate the direction from the player to the mouse position
+            Vector3 directionToMouse = (mouseWorldPosition - transform.position).normalized;
+
+            //Use Quaternion.LookRotation to create a rotation towards the direction
+            Quaternion targetRotation = Quaternion.LookRotation(directionToMouse);
+
+         
+            //modify the Target Rotation so it only keeps track of the y rotation we want
+            targetRotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
+
+            //Smoothly rotate the player towards the mouse, rotation speed could be an upgrade mechanic
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        }
+    }
+
+
+
+
+    
 }
