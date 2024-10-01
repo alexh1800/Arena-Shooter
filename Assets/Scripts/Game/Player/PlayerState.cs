@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-    [SerializeField]
-    float invincibilityDuration = 2f;  // Time the player is invincible after collision
+    [SerializeField] PlayerStats playerStats;
+
     public bool isInvincible = false;  // Tracks whether the player is invincible
 
 
@@ -23,7 +23,7 @@ public class PlayerState : MonoBehaviour
         //maybe make player a bit transparent or something
 
         // keep isInvincible true for invincible duration
-        yield return new WaitForSeconds(invincibilityDuration);
+        yield return new WaitForSeconds(playerStats.InvincibilityDuration);
 
         //set is invincible to false again
         isInvincible = false;

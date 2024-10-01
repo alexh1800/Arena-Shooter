@@ -25,11 +25,11 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+            Enemy enemy = other.GetComponent<Enemy>();
 
-            if (enemyHealth != null)
+            if (enemy != null)
             {
-                enemyHealth.TakeDamage(damage);
+                enemy.TakeDamage(damage);
             }
 
             Destroy(gameObject);  // Destroy projectile on impact

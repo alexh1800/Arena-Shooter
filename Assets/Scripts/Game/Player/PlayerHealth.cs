@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] PlayerStats playerStats;
+    [SerializeField] PlayerState playerState;
 
-    public float maxHealth = 100;
-    [SerializeField]
-    private float currentHealth;
+
+    [SerializeField] private float currentHealth;
 
     
 
 
     void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = playerStats.MaxHealth;
     }
 
     private void Update()
@@ -29,23 +30,19 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        PlayerState playerState = GetComponent<PlayerState>();
-
         if (!playerState.isInvincible)
         {
             print("I took a hit!");
             currentHealth -= damage;
 
             playerState.triggerInvincible();
-
-        }
-  
+        } 
     }
 
+    //POLYMORPHISM
     //Implement an Overload for taking damage with knockback
     public void TakeDamage(float damage, Vector3 enemyPosition, float knockbackForce)
     {
-        PlayerState playerState = GetComponent<PlayerState>();
 
         if (!playerState.isInvincible)
         {
@@ -53,7 +50,7 @@ public class PlayerHealth : MonoBehaviour
             currentHealth -= damage;
 
             //implement knockback
-            PlayerPhysics physics = GetComponent<PlayerPhysics>();
+            Physics physics = GetComponent<Physics>();
             physics.knockBack(enemyPosition, knockbackForce);
 
             playerState.triggerInvincible();
@@ -62,6 +59,10 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        print("PlayerHEalth Detected a collision");
+    }
 
 
 
