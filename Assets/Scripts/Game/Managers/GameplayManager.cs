@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameplayManager : MonoBehaviour
@@ -11,6 +12,8 @@ public class GameplayManager : MonoBehaviour
     public float TotalGameTime { get; private set; }
 
 
+    //UI
+    [SerializeField] TMP_Text levelText;
 
     //pauseMenuUI will be used to detect if the game is currenly paused
     //(if it's active/visible we'll assume the game is paused)
@@ -27,6 +30,10 @@ public class GameplayManager : MonoBehaviour
     {
         UpdateGameTime();
         UpdateLevel();
+
+        //UI
+        levelText.text = $"Level: {Level}";
+
     }
 
 
@@ -37,7 +44,7 @@ public class GameplayManager : MonoBehaviour
         {
             // Use unscaledDeltaTime to ensure the timer doesn't depend on Time.timeScale
             TotalGameTime += Time.unscaledDeltaTime;
-            print(TotalGameTime);
+            //print(TotalGameTime);
         }
     }
 

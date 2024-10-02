@@ -9,11 +9,6 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] GameplayManager gameplayManager;
     [SerializeField] GameObject enemyPrefab;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -24,26 +19,29 @@ public class SpawnManager : MonoBehaviour
     void enemyManager()
     {   // get number of enemies that should be spawned based on level
         int enemyGoal = gameplayManager.Level * enemyMultiplier;
-        print($"Enemy Goal: {enemyGoal}");
+        //print($"Enemy Goal: {enemyGoal}");
 
         // get the number of enemies currently active
         // note think about adding a dedicated enemy manager later for better performance
         int numberOfEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        print($"Number of enemies: {numberOfEnemies}");
+        //print($"Number of enemies: {numberOfEnemies}");
 
         // if there aren't enough enemies active, spawn one (within bounds of arena)
         if (enemyGoal > numberOfEnemies)
         {
-            print("spawn enemy");
+            //print("spawn enemy");
             SpawnEnemy();
         }
     }
 
     void SpawnEnemy()
     {
+        //Spawn an enemy
         GameObject newEnemyObject = Instantiate(enemyPrefab, getSpawnLocation(), enemyPrefab.transform.rotation);
+        
+        //Not sure if I want to add spawn modifications here or in enemy script, will do later
         //Get the New Enemy Script
-        Enemy newEnemy = newEnemyObject.GetComponent<Enemy>();
+        //Enemy newEnemy = newEnemyObject.GetComponent<Enemy>();
 
 
     

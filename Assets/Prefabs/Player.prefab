@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 8702003945491176880}
   - component: {fileID: 1234134744341759672}
   - component: {fileID: 288274972226405538}
+  - component: {fileID: 6741922910862813300}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -152,8 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
-  speed: 10
-  rotationSpeed: 5
+  playerStats: {fileID: 1234134744341759672}
 --- !u!114 &7875129289720849145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,8 +166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4512d500a6687544ba7741d5df04ff9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  playerStats: {fileID: 1234134744341759672}
+  playerState: {fileID: 8702003945491176880}
   currentHealth: 0
+  healthSlider: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!114 &7055095626561140328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90687aace015dd74bbb122ad781d2833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invincibilityDuration: 1
+  playerStats: {fileID: 1234134744341759672}
   isInvincible: 0
 --- !u!114 &1234134744341759672
 MonoBehaviour:
@@ -209,7 +212,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c320122b464e5fb42b6f3e190119443a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  MaxHealth: 100
+  Speed: 10
+  InvincibilityDuration: 1
+  Rotation: 2
+  HealthLevel: 1
+  SpeedLevel: 1
+  MaxHealthCost: 100
+  SpeedCost: 100
+  CurrencyManager: {fileID: 0}
 --- !u!114 &288274972226405538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,3 +233,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec2803b6f7eea014d91026153c5a07da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6741922910862813300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291424800768296171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d503c4f5dc0d04ba118a1040dc638f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Automatic: 0
+  KnockbackLevel: 1
+  Knockback: 0
+  DamageLevel: 1
+  Damage: 10
+  FireRateLevel: 1
+  FireRate: 0.5
+  LifeSpanLevel: 1
+  LifeSpan: 1

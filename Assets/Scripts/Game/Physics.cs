@@ -13,7 +13,7 @@ public class Physics : MonoBehaviour
         gameManager = GameObject.Find("Gameplay Manager").GetComponent<GameplayManager>(); 
     }
 
-    public void knockBack(Vector3 enemyPosition, float force)
+    public void KnockBack(Vector3 enemyPosition, float force)
     {
         // Calculate the direction of knockback (away from the enemy)
         Vector3 knockbackDirection = (transform.position - enemyPosition).normalized;

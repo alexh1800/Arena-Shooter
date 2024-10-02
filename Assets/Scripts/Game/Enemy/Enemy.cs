@@ -22,8 +22,18 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float knockbackForce = 1f;
 
     //Health Variables
-    [SerializeField] protected float maxHealth = 100;
+    [SerializeField] protected float maxHealth = 10;
     [SerializeField] protected float currentHealth;
+
+    // The currency prefab to instantiate
+    [SerializeField] protected GameObject currencyPrefab;
+    // The health drop prefab to instantiate
+    [SerializeField] protected GameObject healthPrefab;
+
+    //floating health bar
+    [SerializeField] protected FloatingHealthBar healthBar;
+
+    //[SerializeField] protected float currencyDropValue = 10;
 
     void Start()
     {
@@ -92,6 +102,8 @@ public class Enemy : MonoBehaviour
     {
         currentHealth -= damage;
 
+        healthBar.UpdateSlider(currentHealth, maxHealth);
+
         if (currentHealth <= 0)
         {
             Die();
@@ -101,8 +113,47 @@ public class Enemy : MonoBehaviour
     //what to do when the enemy dies
     protected virtual void Die()
     {
-        // Notify other systems or controllers that this enemy is dead
+        RollDrop();
+
         Destroy(gameObject);
     }
+
+    protected virtual void RollDrop()
+    {
+        //determine how often health will be dropped by this enemy
+        int number = Random.Range(0, 5);
+
+        if (number == 0)
+        {
+            DropHealth();
+        }
+        else
+        {
+            DropCurrency();
+        }
+    }
+
+    protected virtual void DropCurrency()
+    {
+        GameObject currencyDrop = Instantiate(currencyPrefab, transform.position, Quaternion.identity);
+        CurrencyDrop currencyDropScript = currencyDrop.GetComponent<CurrencyDrop>();
+
+        //set the currency obtained to 1/10th of the units max health, maybe manually set this later
+        currencyDropScript.value = Mathf.RoundToInt(maxHealth / 10);
+    }
+
+
+    protected virtual void DropHealth()
+    {
+        
+        
+            GameObject healthObject = Instantiate(healthPrefab, transform.position, Quaternion.identity);
+            HealthDrop healthDropScript = healthObject.GetComponent<HealthDrop>();
+            healthDropScript.value = 10;
+        
+    }
+
+
+
 
 }
