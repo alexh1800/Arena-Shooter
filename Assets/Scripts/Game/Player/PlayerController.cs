@@ -7,13 +7,14 @@ public class PlayerController : MonoBehaviour
 
     public Camera mainCamera;  // Reference to the main camera
 
-    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] PlayerStats playerStats;
 
     // Update is called once per frame
     void Update()
     {
         //move player based on player input
         MovePlayer();
+
         //ABSTRACTION
         //Make the player rotate following the mouse's location
         MouseRotation();

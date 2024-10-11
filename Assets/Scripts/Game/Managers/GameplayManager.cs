@@ -11,6 +11,8 @@ public class GameplayManager : MonoBehaviour
     public int Level { get; private set; }
     public float TotalGameTime { get; private set; }
 
+    public bool GameIsPaused { get; private set; } = false;
+
 
     //UI
     [SerializeField] TMP_Text levelText;
@@ -28,19 +30,32 @@ public class GameplayManager : MonoBehaviour
 
     void Update()
     {
+        CheckIfPaused();
         UpdateGameTime();
         UpdateLevel();
 
-        //UI
+        //UI I feel like Maybe this should be done elsewhere
         levelText.text = $"Level: {Level}";
 
+    }
+
+    void CheckIfPaused()
+    {
+        //if the pause menu ui is active then set the game to paused
+        if (pauseMenuUI.activeSelf)
+        {
+            GameIsPaused = true;
+        } else
+        {
+            GameIsPaused = false;
+        }
     }
 
 
     void UpdateGameTime()
     {
         // Only update the timer if the pause menu isn't active
-        if (!pauseMenuUI.activeSelf)
+        if (!GameIsPaused)
         {
             // Use unscaledDeltaTime to ensure the timer doesn't depend on Time.timeScale
             TotalGameTime += Time.unscaledDeltaTime;

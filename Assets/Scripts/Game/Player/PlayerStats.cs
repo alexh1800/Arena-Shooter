@@ -12,40 +12,40 @@ public class PlayerStats : MonoBehaviour
     /// I may switch them back to properties after completion
     /// </summary>
     /// 
-    public float MaxHealth = 100f;
-    public float Speed = 10f;
-    public float InvincibilityDuration = 1f;
-    public float Rotation = 2f;
+    public float MaxHealth { get; private set; } = 30f;
+    public float Speed { get; private set; } = 4f;
+    public float InvincibilityDuration { get; private set; } = 1f;
+    public float Rotation { get; private set; } = 2f;
 
 
     /////////// Levelup variables////////////////
 
     //levels will need to be accessed by level up menu
-    public int HealthLevel = 1;
-    public int SpeedLevel = 1;
+    public int HealthLevel { get; private set; } = 1;
+    public int SpeedLevel { get; private set; } = 1;
     //public int InvincibilityLevel = 1;
     //public int RotationLevel = 1;
 
-    //public int MaxLevel = 10;
+
 
     //cost will need to be accessed by level up menu
-    public int MaxHealthCost = 100;
-    public int SpeedCost = 100;
+    public int MaxHealthCost { get; private set; } = 10;
+    public int SpeedCost { get; private set; } = 10;
     //public int InvincibilityCost = 100;
     //public int RotationCost = 50;
 
     
 
-    //cost will need to be accessed by level up menu
-    int baseMaxHealthCost = 100;
-    int baseSpeedCost = 100;
+    int baseMaxHealthCost = 10;
+    int baseSpeedCost = 10;
     //int baseInvincibilityCost = 100;
     //int baseRotationCost = 50;
 
     float baseMaxHealth = 10f;
-    float baseSpeed = 5f;
+    float baseSpeed = 2f;
+    float baseRotation = 0.5f;
     //float baseInvincibilityDuration = 0.5f;
-    //float baseRotation = .5f;
+
 
     [SerializeField] CurrencyManager CurrencyManager;
 
@@ -65,8 +65,11 @@ public class PlayerStats : MonoBehaviour
             //improve stat
             Speed += baseSpeed;
 
+            //also improve rotation speed
+            Rotation += baseRotation;
+
             //Set Cost for Next Level
-            SpeedCost = baseSpeedCost * (SpeedLevel + 1);
+            SpeedCost = baseSpeedCost * SpeedLevel;
         }
     }
 
@@ -79,8 +82,12 @@ public class PlayerStats : MonoBehaviour
             HealthLevel++;
             //Improve stat
             MaxHealth += baseMaxHealth;
+
+            //also heal the players health the amount added to max health
+            gameObject.GetComponent<PlayerHealth>().HealAmount(baseMaxHealth);
+
             //Set Cost for next level up
-            MaxHealthCost = baseMaxHealthCost * (HealthLevel + 1);
+            MaxHealthCost = baseMaxHealthCost * HealthLevel;
         }
     }
 

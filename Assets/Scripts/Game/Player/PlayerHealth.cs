@@ -29,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
     private void Update()
     {
         //note could probobly update this only when taking damage or getting health for
-        //better performance, but this works well
+        //better performance, but this works well enough
         UpdateHealthUI();
 
         if (currentHealth <= 0)
@@ -100,6 +100,18 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = playerStats.MaxHealth;
         }
 
+    }
+
+    public void HealAmount(float amount)
+    {
+        //add our heal amount to our current health
+        currentHealth += amount;
+
+        //if we exceed the player's max health, set the player's health to their max
+        if (currentHealth > playerStats.MaxHealth)
+        {
+            currentHealth = playerStats.MaxHealth;
+        }
     }
 
 

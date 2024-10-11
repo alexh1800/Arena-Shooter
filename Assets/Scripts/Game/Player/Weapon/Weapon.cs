@@ -1,20 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerShoot : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
     [SerializeField] GameObject projectilePrefab;
 
-    //[SerializeField] float projectileLife = 2f;
+    WeaponStats weaponStats;
 
-    [SerializeField] bool automatic = true;
 
-    [SerializeField] float fireRate = 0.5f;
-    
+    bool automatic = true;
+
+    float fireRate = 1f;
     float nextFireTime = 0f;
-    
+
+    //note damage and range are implemented in Projectile.cs
+
+
+    private void Awake()
+    {
+        weaponStats = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponStats>();
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -44,6 +51,7 @@ public class PlayerShoot : MonoBehaviour
                 }
             }
 
+            fireRate = weaponStats.FireRate;
             nextFireTime = Time.time + fireRate;
         }
     }
@@ -52,7 +60,7 @@ public class PlayerShoot : MonoBehaviour
     {
 
         GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
-        
+
 
         //Destroy(projectile, projectileLife);
     }

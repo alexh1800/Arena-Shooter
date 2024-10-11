@@ -5,19 +5,29 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float speed = 20;
-    public float damage = 10;
-    public float lifespan = 1;
+    float damage = 10;
+    float lifespan = 1;
+
+    [SerializeField] WeaponStats weaponStats;
 
     // Start is called before the first frame update
     void Start()
     {
+        //print("shot fired");
+        weaponStats = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponStats>();
+        damage = weaponStats.Damage;
+        lifespan = weaponStats.Range;
+
         Destroy(gameObject, lifespan);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+        
         
     }
 

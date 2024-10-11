@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6430064991743347510}
   - component: {fileID: 8547458260234284190}
   - component: {fileID: 7875129289720849145}
-  - component: {fileID: 7055095626561140328}
   - component: {fileID: 8702003945491176880}
   - component: {fileID: 1234134744341759672}
   - component: {fileID: 288274972226405538}
@@ -171,21 +170,6 @@ MonoBehaviour:
   currentHealth: 0
   healthSlider: {fileID: 0}
   healthText: {fileID: 0}
---- !u!114 &7055095626561140328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291424800768296171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2728b642907d1b0459e79fdade9ced82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 399563340095235355, guid: f976a7389192e7844871225157511193, type: 3}
-  automatic: 1
-  fireRate: 0.5
 --- !u!114 &8702003945491176880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,8 +202,8 @@ MonoBehaviour:
   Rotation: 2
   HealthLevel: 1
   SpeedLevel: 1
-  MaxHealthCost: 100
-  SpeedCost: 100
+  MaxHealthCost: 10
+  SpeedCost: 10
   CurrencyManager: {fileID: 0}
 --- !u!114 &288274972226405538
 MonoBehaviour:
@@ -246,11 +230,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Automatic: 0
-  KnockbackLevel: 1
-  Knockback: 0
-  DamageLevel: 1
   Damage: 10
+  FireRate: 1
+  Range: 0.5
+  DamageLevel: 1
   FireRateLevel: 1
-  FireRate: 0.5
-  LifeSpanLevel: 1
-  LifeSpan: 1
+  RangeLevel: 1
+  DamageCost: 10
+  FireRateCost: 5
+  RangeCost: 10
