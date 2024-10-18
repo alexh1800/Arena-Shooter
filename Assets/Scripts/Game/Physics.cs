@@ -32,7 +32,7 @@ public class Physics : MonoBehaviour
         //if somehow the player glitches through the platform or floats into the air, reset their y postion
         if (transform.position.y != 1)
         {
-            transform.position = new Vector3(transform.position.x, 1, transform.position.y);
+            //transform.position = new Vector3(transform.position.x, 1, transform.position.y);
         }
 
         //if the player tries to exceed max horizontal distance stop them

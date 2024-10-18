@@ -35,6 +35,10 @@ public class Enemy : MonoBehaviour
 
     //[SerializeField] protected float currencyDropValue = 10;
 
+
+    //change the drop odds for health, ex. 10 would make a health drop 1/10
+    [SerializeField] int healthDropRng = 10;
+
     void Start()
     {
         //get the player object
@@ -121,7 +125,7 @@ public class Enemy : MonoBehaviour
     protected virtual void RollDrop()
     {
         //determine how often health will be dropped by this enemy
-        int number = Random.Range(0, 5);
+        int number = Random.Range(0, healthDropRng);
 
         if (number == 0)
         {
@@ -135,7 +139,10 @@ public class Enemy : MonoBehaviour
 
     protected virtual void DropCurrency()
     {
-        GameObject currencyDrop = Instantiate(currencyPrefab, transform.position, Quaternion.identity);
+        //to not cut into ground, drops need to be at a y position of 1, change this if there are any problems with drop location
+        Vector3 dropLocation = new Vector3(transform.position.x, 1, transform.position.z);
+        GameObject currencyDrop = Instantiate(currencyPrefab, dropLocation, Quaternion.identity);
+
         CurrencyDrop currencyDropScript = currencyDrop.GetComponent<CurrencyDrop>();
 
         //set the currency obtained to 1/10th of the units max health, maybe manually set this later
@@ -145,11 +152,11 @@ public class Enemy : MonoBehaviour
 
     protected virtual void DropHealth()
     {
-        
-        
-            GameObject healthObject = Instantiate(healthPrefab, transform.position, Quaternion.identity);
-            HealthDrop healthDropScript = healthObject.GetComponent<HealthDrop>();
-            healthDropScript.value = 10;
+        Vector3 dropLocation = new Vector3(transform.position.x, 1, transform.position.z);
+
+        GameObject healthObject = Instantiate(healthPrefab, dropLocation, Quaternion.identity);
+        HealthDrop healthDropScript = healthObject.GetComponent<HealthDrop>();
+        healthDropScript.value = 10;
         
     }
 

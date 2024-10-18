@@ -14,12 +14,16 @@ public class Weapon : MonoBehaviour
     float fireRate = 1f;
     float nextFireTime = 0f;
 
+    //the physical in game weapon game object
+    GameObject weapon;
+
     //note damage and range are implemented in Projectile.cs
 
 
     private void Awake()
     {
         weaponStats = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponStats>();
+        weapon = GameObject.FindWithTag("PlayerWeapon");
     }
 
 
@@ -58,8 +62,9 @@ public class Weapon : MonoBehaviour
 
     void InstantiateProjectile()
     {
-
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
+         
+        //Vector3 weaponPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        GameObject projectile = Instantiate(projectilePrefab, weapon.transform.position, transform.rotation);
 
 
         //Destroy(projectile, projectileLife);

@@ -15,7 +15,7 @@ public class PlayerStats : MonoBehaviour
     public float MaxHealth { get; private set; } = 30f;
     public float Speed { get; private set; } = 4f;
     public float InvincibilityDuration { get; private set; } = 1f;
-    public float Rotation { get; private set; } = 2f;
+    //public float Rotation { get; private set; } = 2f;
 
 
     /////////// Levelup variables////////////////
@@ -43,7 +43,7 @@ public class PlayerStats : MonoBehaviour
 
     float baseMaxHealth = 10f;
     float baseSpeed = 2f;
-    float baseRotation = 0.5f;
+    //float baseRotation = 0.5f;
     //float baseInvincibilityDuration = 0.5f;
 
 
@@ -65,8 +65,8 @@ public class PlayerStats : MonoBehaviour
             //improve stat
             Speed += baseSpeed;
 
-            //also improve rotation speed
-            Rotation += baseRotation;
+            //also improve rotation speed (removed rotation speed as a stat)
+            //Rotation += baseRotation;
 
             //Set Cost for Next Level
             SpeedCost = baseSpeedCost * SpeedLevel;

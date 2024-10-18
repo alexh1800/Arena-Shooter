@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed = 20;
+    float speed = 20;
     float damage = 10;
     float lifespan = 1;
 
-    [SerializeField] WeaponStats weaponStats;
+    WeaponStats weaponStats;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +17,7 @@ public class Projectile : MonoBehaviour
         weaponStats = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponStats>();
         damage = weaponStats.Damage;
         lifespan = weaponStats.Range;
+        speed = weaponStats.ProjectileSpeed;
 
         Destroy(gameObject, lifespan);
         

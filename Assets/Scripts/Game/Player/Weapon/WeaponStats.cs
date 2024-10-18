@@ -21,6 +21,7 @@ public class WeaponStats : MonoBehaviour
     public float Damage { get; private set; } = 10;
     public float FireRate { get; private set; } = 1f;  // Shots per second  
     public float Range { get; private set; } = 0.5f;
+    public float ProjectileSpeed { get; private set; } = 20f;
 
     //public float Knockback = 0f;
 
@@ -43,8 +44,9 @@ public class WeaponStats : MonoBehaviour
     // -- Increase Amounts -- //
     //Used to determine how much to increase stat per level
     int damageIncrease = 5;
-    //int fireRateIncrease = 10; //this is divided by the current fire rate and then subtracted from the current fire rate
+    //int fireRateIncrease made it so this is just fire rate 1 second divided by level, so level 3 would be 3 shots per second
     float rangeIncrease = .25f;
+    int projectileSpeedIncrease = 5;
 
 
     // -- Increase Cost -- //
@@ -131,8 +133,12 @@ public class WeaponStats : MonoBehaviour
             //Increment level
             RangeLevel++;
 
-            //improve stat
+            //improve range stat
             Range += rangeIncrease;
+
+            //also improve projectile speed
+            //(faster bullets will travel farther in the same amount of time which is why I chose to include this is under range)
+            ProjectileSpeed += projectileSpeedIncrease;
 
             //Set Cost for Next Level
             RangeCost = rangeBaseCost * RangeLevel;

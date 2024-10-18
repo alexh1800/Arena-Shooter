@@ -127,7 +127,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4341861750736117727}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -196,13 +196,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  damage: 10
-  knockbackForce: 2
+  damage: 0
+  knockbackForce: 0
   maxHealth: 20
   currentHealth: 0
   currencyPrefab: {fileID: 1042471240284068521, guid: 015e38123afb49546ab6c780173a9600, type: 3}
   healthPrefab: {fileID: 1812709568004155857, guid: e411b3b71e7ab6a48b9775e4f9065a14, type: 3}
   healthBar: {fileID: 1658278940671332735}
+  healthDropRng: 10
 --- !u!114 &35106928770585924
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,10 @@ public class GameplayManager : MonoBehaviour
 {
     // ENCAPSULATION
     //make properties that can only be set privately, but read publicly
+
+
+
+    public int GameplayMode = 1; //determine if we'll be playing overhead or 3rd person
     public float ArenaSize { get; private set; }
     public int Level { get; private set; }
     public float TotalGameTime { get; private set; }
@@ -24,7 +28,7 @@ public class GameplayManager : MonoBehaviour
     private void Start()
     {
         //Level = 1;
-        ArenaSize = 50;
+        ArenaSize = 51;
         TotalGameTime = 0;
     }
 

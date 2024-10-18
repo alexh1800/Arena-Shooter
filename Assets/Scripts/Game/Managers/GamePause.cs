@@ -12,8 +12,9 @@ public class GamePause : MonoBehaviour
 
     void Update()
     {
+
         // Check if the player presses the pause button (Escape key or another key)
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(GameOptions.pauseMenuKey))
         {
             if (!isPaused)
             {
