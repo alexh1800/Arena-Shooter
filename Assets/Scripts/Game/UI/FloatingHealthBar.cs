@@ -16,14 +16,19 @@ public class FloatingHealthBar : MonoBehaviour
         cameraTransform = GameObject.Find("Main Camera").GetComponent<Camera>().transform;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        //transform.LookAt(transform.position + cameraTransform.forward);
+        //make sure the floating health bar looks good with camera roatations
         transform.rotation = cameraTransform.rotation;
 
     }
 
+    /// <summary>
+    /// Update the floating health bar slider
+    /// </summary>
+    /// <param name="currentHealth"></param>
+    /// <param name="maxHealth"></param>
     public void UpdateSlider(float currentHealth, float maxHealth)
     {
         healthSlider.value = currentHealth;

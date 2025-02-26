@@ -9,23 +9,30 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        if (GameOptions.displayMode == 0)
+        //only follow the player with camera if player exists (isn't destroyed on game over)
+        if (playerTransform != null)
         {
-            OverheadCamera();
-        }
 
-        //setup 3rd person camera
-        if (GameOptions.displayMode == 1)
-        {
-            FirstPersonCamera();
-        }
+            //ABSTRACTION
+            if (GameOptions.DisplayMode == 0)
+            {
+                OverheadCamera();
+            }
+
+            //setup 3rd person camera
+            if (GameOptions.DisplayMode == 1)
+            {
+                FirstPersonCamera();
+            }
 
 
-        //setup 3rd person camera
-        if (GameOptions.displayMode == 2)
-        {
-            ThirdPersonCamera();
+            //setup 3rd person camera
+            if (GameOptions.DisplayMode == 2)
+            {
+                ThirdPersonCamera();
+            }
         }
+        
 
     }
 

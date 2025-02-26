@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     protected string playerGameObjectName = "Player";
     protected GameObject player;  // Reference to the player object, we'll get this in start()
 
+    protected GameplayManager gameplayManager;
+
     [SerializeField] protected float speed = 3f;
 
     //Damage Variables
@@ -23,7 +25,7 @@ public class Enemy : MonoBehaviour
 
     //Health Variables
     [SerializeField] protected float maxHealth = 10;
-    [SerializeField] protected float currentHealth;
+    protected float currentHealth;
 
     // The currency prefab to instantiate
     [SerializeField] protected GameObject currencyPrefab;
@@ -37,15 +39,23 @@ public class Enemy : MonoBehaviour
 
 
     //change the drop odds for health, ex. 10 would make a health drop 1/10
-    [SerializeField] int healthDropRng = 10;
+    [SerializeField] protected int healthDropRng = 10;
+
+
+    [SerializeField] protected int regenAmount = 0;         // Amount of health restored per interval
+    [SerializeField] protected float regenInterval = 1f;    // Time in seconds between regenerations
+    protected Coroutine regenCoroutine;
 
     void Start()
     {
         //get the player object
         player = GameObject.Find(playerGameObjectName);
 
+
         //set current health to max health at start
         currentHealth = maxHealth;
+
+        
     }
 
     void Update()
@@ -161,6 +171,30 @@ public class Enemy : MonoBehaviour
     }
 
 
+    protected void StartHealthRegeneration()
+    {
+        if (regenCoroutine == null)
+        {
+            regenCoroutine = StartCoroutine(HealthRegeneration());
+        }
+    }
+
+    private IEnumerator HealthRegeneration()
+    {
+        while (true)
+        {
+            // Only regenerate health if health is below max, and don't want to accidentally revive an enemy if the enemy game object isn't destroyed fast enough
+            if (currentHealth < maxHealth && currentHealth > 0)
+            {
+                currentHealth += regenAmount;
+                currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+                healthBar.UpdateSlider(currentHealth, maxHealth);
+
+
+            }
+            yield return new WaitForSeconds(regenInterval);
+        }
+    }
 
 
 }

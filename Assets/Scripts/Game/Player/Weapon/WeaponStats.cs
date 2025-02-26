@@ -5,19 +5,10 @@ using UnityEngine;
 
 public class WeaponStats : MonoBehaviour
 {
-    /// <summary>
-    /// Note: While stats appear to be a good candidate for 
-    /// { get; private set; } properties, this removes the ability to
-    /// modify them in the inspector, which I don't want while testing
-    /// I'm going to keep the names capitolized as I may decide
-    /// to switch them back to properties after completion
-    /// </summary>
-
-    //public bool Automatic  = true;
-
+    // ENCAPSULATION
 
     // -- Stats -- //
-   
+
     public float Damage { get; private set; } = 10;
     public float FireRate { get; private set; } = 1f;  // Shots per second  
     public float Range { get; private set; } = 0.5f;
@@ -51,8 +42,8 @@ public class WeaponStats : MonoBehaviour
 
     // -- Increase Cost -- //
     //Used to determine how much to increase stat cost per level
-    int damageBaseCost = 10;
-    int fireRateBaseCost = 10;
+    int damageBaseCost = 20;
+    int fireRateBaseCost = 20;
     int rangeBaseCost = 10;
 
 

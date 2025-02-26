@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     public Slider healthSlider;  // Assign via Inspector
     public TMP_Text healthText;
 
-
+    GameplayManager gameplayManager;
 
 
     void Start()
@@ -24,6 +24,8 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = playerStats.MaxHealth;
         healthSlider.maxValue = playerStats.MaxHealth;
         healthSlider.value = currentHealth;
+
+        gameplayManager = FindObjectOfType<GameplayManager>();
     }
 
     private void Update()
@@ -34,6 +36,9 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            //health being negative looks odd, so set it to 0
+            currentHealth = 0;
+            UpdateHealthUI();
             Die();
         }
     }
@@ -118,7 +123,12 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        // Notify other systems or controllers that the player has died!
+        // Destroy the player
         Destroy(gameObject);
+        //Let gameplayManaget know it's game over
+        gameplayManager.GameOver();
+
+
+
     }
 }

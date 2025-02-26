@@ -27,7 +27,7 @@ public class Physics : MonoBehaviour
     {
         
         //Get the arena size from the GameplayManager Class
-        float maxDistance = gameManager.ArenaSize - 1;
+        float maxDistance = gameManager.ArenaSize - 1f;
 
         //if somehow the player glitches through the platform or floats into the air, reset their y postion
         if (transform.position.y != 1)

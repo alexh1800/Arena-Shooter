@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class UpgradeMenuController : MonoBehaviour
 {
-    public Button[] upgradeButtons;  // Array of upgrade buttons
+    [SerializeField] Button[] upgradeButtons;  // Array of upgrade buttons
     private int selectedIndex = 0;
 
     void Start()

@@ -13,8 +13,8 @@ public class GamePause : MonoBehaviour
     void Update()
     {
 
-        // Check if the player presses the pause button (Escape key or another key)
-        if (Input.GetKeyDown(GameOptions.pauseMenuKey))
+        // Check if the player presses the pause button as it's set in GameOptions
+        if (Input.GetKeyDown(GameOptions.PauseMenuKey))
         {
             if (!isPaused)
             {
@@ -60,8 +60,7 @@ public class GamePause : MonoBehaviour
 
     public void QuitGame()
     {
-        // Optional: Add functionality to quit the game from the pause menu
-        Debug.Log("Quitting game...");
+        // Think about adding functionality to quit the game from the pause menu
         Application.Quit();
     }
 }

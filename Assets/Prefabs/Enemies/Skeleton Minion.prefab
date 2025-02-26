@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5010776349857859801}
   - component: {fileID: 6646129864962585955}
-  - component: {fileID: 7042328042942377137}
   - component: {fileID: 953833242938277934}
+  - component: {fileID: 1908671941156367595}
   m_Layer: 0
   m_Name: Skeleton Minion
   m_TagString: Enemy
@@ -57,27 +57,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35, y: 1, z: 0.35}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7042328042942377137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1833683950635286526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 224d863f14de0354dbee9ce26bdeb92e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  damage: 0
-  knockbackForce: 0
-  maxHealth: 20
-  currentHealth: 0
-  currencyPrefab: {fileID: 1042471240284068521, guid: 015e38123afb49546ab6c780173a9600, type: 3}
-  healthPrefab: {fileID: 1812709568004155857, guid: e411b3b71e7ab6a48b9775e4f9065a14, type: 3}
-  healthBar: {fileID: 7833999345996469371}
-  healthDropRng: 10
 --- !u!114 &953833242938277934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +69,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec2803b6f7eea014d91026153c5a07da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1908671941156367595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833683950635286526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7693c80e65a514442b3cd0de7c092681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  damage: 10
+  knockbackForce: 1
+  maxHealth: 10
+  currentHealth: 0
+  currencyPrefab: {fileID: 1042471240284068521, guid: 015e38123afb49546ab6c780173a9600, type: 3}
+  healthPrefab: {fileID: 1812709568004155857, guid: e411b3b71e7ab6a48b9775e4f9065a14, type: 3}
+  healthBar: {fileID: 7833999345996469371}
+  healthDropRng: 10
 --- !u!1 &3163748417258900118
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,8 +268,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6794277710516162376}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.2}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6120668398500466003}

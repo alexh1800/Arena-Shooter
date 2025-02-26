@@ -31,9 +31,13 @@ public class UpgradeMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //keep upgrade panel up to date so all values are accurate
         ManageUpgradesPanel();
     }
 
+    /// <summary>
+    /// keep upgrade Panel Up to date
+    /// </summary>
     void ManageUpgradesPanel()
     {
         if (gameplayManager.GameIsPaused)

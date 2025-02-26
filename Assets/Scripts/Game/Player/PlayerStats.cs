@@ -5,14 +5,10 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
 
-    /// <summary>
-    /// Note: While stats appear to be a good candidate for 
-    /// { get; private set; } properties, this removes the ability to
-    /// modify them in the inspector, which I don't want while testing
-    /// I may switch them back to properties after completion
-    /// </summary>
-    /// 
-    public float MaxHealth { get; private set; } = 30f;
+
+    // ENCAPSULATION
+
+    public float MaxHealth { get; private set; } = 20f;
     public float Speed { get; private set; } = 4f;
     public float InvincibilityDuration { get; private set; } = 1f;
     //public float Rotation { get; private set; } = 2f;
@@ -20,7 +16,6 @@ public class PlayerStats : MonoBehaviour
 
     /////////// Levelup variables////////////////
 
-    //levels will need to be accessed by level up menu
     public int HealthLevel { get; private set; } = 1;
     public int SpeedLevel { get; private set; } = 1;
     //public int InvincibilityLevel = 1;
@@ -42,7 +37,7 @@ public class PlayerStats : MonoBehaviour
     //int baseRotationCost = 50;
 
     float baseMaxHealth = 10f;
-    float baseSpeed = 2f;
+    float baseSpeed = 0.5f;
     //float baseRotation = 0.5f;
     //float baseInvincibilityDuration = 0.5f;
 

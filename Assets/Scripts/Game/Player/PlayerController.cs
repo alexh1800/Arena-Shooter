@@ -15,31 +15,26 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameOptions.controlMode == 0)
+        // ABSTRACTION
+
+        // Mouse Rotation with Arrow or WASD Controls
+        if (GameOptions.ControlMode == 0)
         {
             //move player based on player input
-            MovePlayerMouseControls();
-            //ABSTRACTION
+            MovePlayerWasdArrows();
+            
             //Make the player rotate following the mouse's location
             MouseRotation();
         }
 
-       
-        if (GameOptions.controlMode == 1)
+        //Move player with WASD and Rotate With Arrows, or Left and Right Analog Sticks
+        if (GameOptions.ControlMode == 1)
         {
             MovePlayerTwinStick();
         }
 
 
-        //doesn't work well with overhead mode and isn't completely necessary, removing this for now
-        //may implement later
-        /*
-        if (GameOptions.controlMode == 2)
-        {
-            MovePlayerArrowKeys();
-        }
-        */
-
+        //prevent player from moving out of bounds
         Physics physics = GetComponent<Physics>();
         physics.PreventOutOfBounds();
 
@@ -52,8 +47,8 @@ public class PlayerController : MonoBehaviour
 
 
 
-    //move player based on player input
-    void MovePlayerMouseControls()
+    //move player based on Arrows or WASD Controls
+    void MovePlayerWasdArrows()
     {
 
         // Get the input from the arrow keys (or WASD keys)
@@ -161,7 +156,7 @@ public class PlayerController : MonoBehaviour
 
         //Display mode zero uses a locked overhead view, with a locked camera rotation we want the player 
         //to move based on the world space
-        if (GameOptions.displayMode == 0)
+        if (GameOptions.DisplayMode == 0)
         {
             //Move the player 
             transform.Translate(direction * playerStats.Speed * Time.deltaTime, Space.World);

@@ -6,18 +6,11 @@ using UnityEngine;
 public class CurrencyManager : MonoBehaviour
 {
     // ENCAPSULATION
-    //adding a currency backing field so that I can modify currency in
-    //the unity inspector
-    [SerializeField]private int currency = 0;
     public int Currency { get; private set; } = 0;
 
     //UI
     [SerializeField] TMP_Text currencyText;
 
-    private void Awake()
-    {
-        Currency = currency;
-    }
 
     private void Update()
     {

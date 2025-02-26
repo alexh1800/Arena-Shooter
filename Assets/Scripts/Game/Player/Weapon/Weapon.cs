@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
 
     bool automatic = true;
 
-    float fireRate = 1f;
+    float fireRate = 1f; //this will be pulled from weaponStats
     float nextFireTime = 0f;
 
     //the physical in game weapon game object

@@ -8,6 +8,8 @@ TagManager:
   - Currency
   - Health
   - PlayerWeapon
+  - Wall
+  - AttractionRadius
   layers:
   - Default
   - TransparentFX
